@@ -1,57 +1,103 @@
 # TCC de Engenharia Elétrica — IoT com TM4C1294
 
-## Sobre o projeto
+## Status
 
-Projeto de **TCC em Engenharia Elétrica pela UniEinstein**, desenvolvido para explorar a aplicação de **Internet das Coisas (IoT) no controle e monitoramento remoto de equipamentos residenciais**.
+🟢 **Concluído — Projeto acadêmico / TCC**
 
-A solução utiliza o microcontrolador **ARM TM4C1294 da Texas Instruments**, combinando comunicação de rede, servidor web embarcado, interface HTML e monitoramento remoto por meio da plataforma ThingSpeak.
+Trabalho de Conclusão de Curso desenvolvido em **Engenharia Elétrica pela UniEinstein**, com implementação de uma solução IoT para controle remoto e monitoramento de equipamentos residenciais utilizando o microcontrolador **ARM TM4C1294 da Texas Instruments**.
+
+**Escopo implementado:** firmware em C, webserver embarcado, interface HTML, controle remoto de equipamentos e integração com a plataforma ThingSpeak para monitoramento.
 
 ---
 
-## Arquitetura
+## Sobre o projeto
 
-```text
-                 ┌──────────────────────┐
-                 │      Usuário         │
-                 │  Interface Web HTML  │
-                 └──────────┬───────────┘
-                            │
-                            ▼
-                 ┌──────────────────────┐
-                 │    Webserver         │
-                 │   TM4C1294 / ARM     │
-                 └──────────┬───────────┘
-                            │
-                            ▼
-                 ┌──────────────────────┐
-                 │ Equipamentos         │
-                 │ Residenciais         │
-                 └──────────────────────┘
-                            │
-                            ▼
-                 ┌──────────────────────┐
-                 │ Comunicação Serial   │
-                 └──────────┬───────────┘
-                            │
-                            ▼
-                 ┌──────────────────────┐
-                 │     ThingSpeak       │
-                 │ Monitoramento IoT    │
-                 └──────────────────────┘
-```
+O projeto explora a aplicação de **Internet das Coisas (IoT)** em automação residencial, permitindo controlar equipamentos remotamente por meio de uma interface web e acompanhar informações do sistema utilizando uma plataforma de monitoramento.
+
+A solução utiliza o **TM4C1294**, um microcontrolador ARM da Texas Instruments, como núcleo do sistema. O firmware, desenvolvido em C, integra a lógica de controle, comunicação, servidor web e interface com os dispositivos residenciais.
+
+Além do controle, o projeto utiliza comunicação serial para disponibilizar dados de monitoramento na plataforma **ThingSpeak**.
 
 ---
 
 ## Funcionalidades
 
 * Controle remoto de equipamentos residenciais;
-* Comunicação entre usuário e dispositivos por meio de interface web;
+* Interface web para interação do usuário;
 * Webserver embarcado no microcontrolador;
-* Página HTML integrada ao firmware para interação com o usuário;
-* Processamento de comandos de controle pelo microcontrolador;
-* Comunicação serial para envio e aquisição de informações;
-* Monitoramento dos dados utilizando ThingSpeak;
-* Integração entre hardware, firmware, rede e plataforma IoT.
+* Página HTML integrada ao sistema;
+* Processamento de comandos de controle;
+* Comunicação entre o usuário e o sistema pela rede;
+* Comunicação serial para monitoramento;
+* Envio de dados para o ThingSpeak;
+* Monitoramento remoto das informações do sistema;
+* Integração entre firmware, hardware, rede e plataforma IoT.
+
+---
+
+## Arquitetura
+
+```text
+                    ┌────────────────────┐
+                    │       Usuário      │
+                    │   Browser / Web UI  │
+                    └──────────┬─────────┘
+                               │
+                               ▼
+                    ┌────────────────────┐
+                    │     Webserver      │
+                    │    Embarcado       │
+                    └──────────┬─────────┘
+                               │
+                               ▼
+                    ┌────────────────────┐
+                    │     TM4C1294       │
+                    │   ARM / C Firmware │
+                    └──────────┬─────────┘
+                               │
+                    ┌──────────┴──────────┐
+                    ▼                     ▼
+          ┌──────────────────┐   ┌──────────────────┐
+          │ Equipamentos     │   │ Comunicação     │
+          │ Residenciais     │   │ Serial          │
+          └──────────────────┘   └────────┬─────────┘
+                                          │
+                                          ▼
+                                 ┌──────────────────┐
+                                 │    ThingSpeak    │
+                                 │   Monitoramento  │
+                                 └──────────────────┘
+```
+
+---
+
+## Fluxo de funcionamento
+
+```text
+Usuário
+   ↓
+Interface HTML
+   ↓
+Webserver embarcado
+   ↓
+TM4C1294
+   ↓
+Processamento do comando
+   ↓
+Controle dos equipamentos
+
+TM4C1294
+   ↓
+Comunicação Serial
+   ↓
+ThingSpeak
+   ↓
+Monitoramento
+```
+
+O usuário acessa a interface web disponibilizada pelo sistema e envia comandos para os equipamentos residenciais.
+
+O **TM4C1294** processa essas requisições e executa as ações correspondentes. Paralelamente, informações do sistema podem ser transmitidas por comunicação serial para acompanhamento através do **ThingSpeak**.
 
 ---
 
@@ -61,65 +107,41 @@ A solução utiliza o microcontrolador **ARM TM4C1294 da Texas Instruments**, co
 
 * **Texas Instruments TM4C1294**
 * Arquitetura ARM
-* Microcontrolador para processamento e controle dos dispositivos
+* Equipamentos residenciais controlados pelo sistema
 
 ### Software
 
 * **C**
-* IDE de desenvolvimento para o TM4C1294
+* IDE de desenvolvimento para TM4C1294
 * HTML
 * Webserver embarcado
 
-### IoT e comunicação
+### Comunicação e IoT
 
 * Comunicação serial
-* ThingSpeak
 * Comunicação em rede
-* Monitoramento remoto
-
----
-
-## Fluxo de funcionamento
-
-```text
-Usuário
-   ↓
-Interface Web
-   ↓
-Webserver
-   ↓
-TM4C1294
-   ↓
-Controle dos equipamentos
-   ↓
-Dados de operação
-   ↓
-Comunicação Serial
-   ↓
-ThingSpeak
-```
-
-O usuário interage com os equipamentos por meio da interface web hospedada pelo sistema. Os comandos são processados pelo microcontrolador e utilizados para controlar os dispositivos residenciais.
-
-Paralelamente, informações do sistema são transmitidas por comunicação serial para a plataforma ThingSpeak, permitindo o acompanhamento remoto dos dados.
+* ThingSpeak
+* Internet of Things (IoT)
 
 ---
 
 ## Desenvolvimento
 
-Os códigos em **C** presentes no repositório representam a implementação do firmware responsável pela operação do sistema.
+Os códigos em **C** presentes no projeto implementam o firmware responsável pelo funcionamento do sistema embarcado.
 
-Entre as principais responsabilidades do código estão:
+Entre as principais responsabilidades do software estão:
 
 * Inicialização e configuração do microcontrolador;
-* Controle dos dispositivos residenciais;
-* Processamento das requisições recebidas;
-* Funcionamento do servidor web;
-* Interface com a página HTML;
+* Controle dos equipamentos;
+* Processamento das requisições;
+* Implementação do webserver;
+* Integração da página HTML;
+* Comunicação com os dispositivos;
 * Comunicação serial;
-* Envio de informações para monitoramento no ThingSpeak.
+* Envio de informações para monitoramento;
+* Integração com a plataforma ThingSpeak.
 
-A página HTML foi incorporada ao projeto para fornecer uma interface de interação entre o usuário e o sistema embarcado.
+A página HTML foi incorporada ao projeto para disponibilizar uma interface de controle acessível ao usuário por meio de um navegador.
 
 ---
 
@@ -129,40 +151,41 @@ A página HTML foi incorporada ao projeto para fornecer uma interface de intera�
 
 * Microcontrolador **TM4C1294**
 * Ambiente de desenvolvimento compatível com o projeto
-* Cabo/interface de programação
-* Rede configurada para o sistema
-* Conta no ThingSpeak, caso o monitoramento seja reproduzido
+* Interface/cabo para gravação do firmware
+* Rede configurada para comunicação
+* Conta no ThingSpeak para reprodução do monitoramento
 
 ### 2. Configuração
 
-Configure os parâmetros de comunicação utilizados pelo sistema no código-fonte, conforme o hardware e ambiente de execução.
+Configure os parâmetros de rede e comunicação utilizados pelo sistema de acordo com o ambiente de execução e com os componentes conectados ao microcontrolador.
 
 ### 3. Compilação
 
-Abra o projeto na IDE utilizada originalmente e compile os arquivos em C.
+Abra o projeto na IDE utilizada no desenvolvimento e compile os arquivos em C.
 
-### 4. Gravação
+### 4. Gravação do firmware
 
-Faça o upload do firmware para o microcontrolador TM4C1294 utilizando a interface de programação adequada.
+Grave o firmware compilado no **TM4C1294** utilizando a interface de programação adequada.
 
 ### 5. Execução
 
-Após a inicialização do sistema:
+Após inicializar o sistema:
 
 1. Conecte o dispositivo à rede configurada;
-2. Acesse a interface web disponibilizada pelo webserver;
-3. Utilize a página HTML para controlar os equipamentos;
-4. Verifique os dados enviados ao ThingSpeak.
+2. Identifique o endereço utilizado pelo webserver;
+3. Acesse a interface pelo navegador;
+4. Utilize a página HTML para controlar os equipamentos;
+5. Verifique os dados enviados ao ThingSpeak.
 
-> As configurações específicas de rede, portas e credenciais devem ser definidas de acordo com o ambiente utilizado.
+> As configurações específicas de rede, portas e credenciais devem ser definidas conforme o ambiente utilizado.
 
 ---
 
 ## Organização do projeto
 
-Os arquivos em C concentram a implementação do sistema embarcado, incluindo a lógica de controle, comunicação, webserver e integração com os dispositivos.
+A estrutura do projeto concentra os arquivos responsáveis pelo firmware, interface web e comunicação com os dispositivos.
 
-A estrutura pode ser organizada conforme os módulos presentes no repositório:
+Uma organização possível é:
 
 ```text
 TCC-IoT/
@@ -175,7 +198,9 @@ TCC-IoT/
 └── ...
 ```
 
-> Ajuste a árvore acima conforme a estrutura real dos arquivos do repositório.
+Os módulos em C são responsáveis pela lógica de controle, comunicação, processamento das requisições e funcionamento do sistema embarcado.
+
+> Ajuste a árvore acima caso a estrutura real do repositório seja diferente.
 
 ---
 
@@ -189,22 +214,34 @@ TCC-IoT/
 * Desenvolvimento de interfaces HTML para sistemas embarcados;
 * Controle remoto de dispositivos;
 * Comunicação serial;
+* Comunicação em rede;
 * Monitoramento remoto utilizando ThingSpeak;
 * Aplicação prática de conceitos de **IoT**;
-* Integração entre sistemas embarcados, redes e serviços de monitoramento.
+* Integração entre sistemas embarcados e serviços externos.
+
+---
+
+## Limitações e considerações
+
+* O funcionamento depende da configuração da rede utilizada pelo sistema;
+* O desempenho está limitado pelos recursos do microcontrolador e dos dispositivos conectados;
+* O acesso remoto depende da infraestrutura de comunicação disponível;
+* O projeto acadêmico não contempla, em sua implementação original, mecanismos avançados de autenticação ou segurança de comunicação;
+* A integração com ThingSpeak depende da configuração adequada do canal de monitoramento.
 
 ---
 
 ## Melhorias futuras
 
-* Autenticação de usuários na interface web;
+* Implementação de autenticação de usuários;
 * Comunicação segura entre cliente e dispositivo;
-* Dashboard local para monitoramento dos equipamentos;
+* Criptografia das comunicações;
+* Dashboard local para monitoramento;
 * Registro histórico de comandos e eventos;
 * Integração com sensores adicionais;
-* Controle de múltiplos dispositivos IoT;
-* Integração com outras plataformas de monitoramento;
-* Evolução para arquitetura IoT distribuída.
+* Controle de múltiplos dispositivos;
+* Expansão da arquitetura para outros dispositivos IoT;
+* Integração com plataformas adicionais de monitoramento.
 
 ---
 
@@ -212,4 +249,12 @@ TCC-IoT/
 
 **Trabalho de Conclusão de Curso — Engenharia Elétrica | UniEinstein**
 
-O projeto foi desenvolvido com foco na aplicação de conceitos de **sistemas embarcados, comunicação, redes e Internet das Coisas** para criação de uma solução de controle e monitoramento remoto de equipamentos residenciais.
+O projeto foi desenvolvido com foco na aplicação prática de **sistemas embarcados, comunicação, redes e Internet das Coisas**, utilizando um microcontrolador ARM para implementar uma solução de controle e monitoramento remoto de equipamentos residenciais.
+
+---
+
+## Status do projeto
+
+🟢 **Concluído**
+
+Projeto acadêmico finalizado e mantido no GitHub como registro técnico e base para futuras evoluções em **IoT, sistemas embarcados, automação residencial e monitoramento remoto**.
